@@ -1,0 +1,17 @@
+<h1>Create Employee</h1>
+<form [formGroup]="form" (ngSubmit)="submit(model)">
+  <formly-form [form]="form" [fields]="fields" [model]="model">
+    <button type="submit"  mat-raised-button color="primary">Submit</button>
+
+  </formly-form>
+</form>
+
+
+
+
+<!-- <mat-spinner
+        class="example-margin"
+        [color]="color"
+        [mode]="mode"
+        [diameter]=30>
+    </mat-spinner> -->

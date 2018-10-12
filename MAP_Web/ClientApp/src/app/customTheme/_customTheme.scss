@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$mat-bdoblue: ( 50: #e4eaf1, 100: #bccadd, 200: #8fa7c7, 300: #6284b0, 400: #40699f, 500: #1e4f8e, 600: #1a4886, 700: #163f7b, 800: #123671, 900: #0a265f, A100: #92b0ff, A200: #5f8bff, A400: #2c66ff, A700: #1354ff, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #ffffff, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #ffffff, A700: #ffffff, ));
+$md-bdoorange: ( 50: #fef5e3, 100: #fde7ba, 200: #fbd78c, 300: #f9c75e, 400: #f8bb3c, 500: #f7af19, 600: #f6a816, 700: #f59f12, 800: #f3960e, 900: #f18608, A100: #ffffff, A200: #fff3e6, A400: #ffd9b3, A700: #ffcc9a, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #000000, 500: #000000, 600: #000000, 700: #000000, 800: #000000, 900: #000000, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+$candy-app-primary: mat-palette($mat-bdoblue, 500, 400, 300);
+$candy-app-accent: mat-palette($md-bdoorange, 500, 400, 300);
+$candy-app-warn: mat-palette($mat-red, 700, 600, 500);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+@include angular-material-theme($candy-app-theme);
