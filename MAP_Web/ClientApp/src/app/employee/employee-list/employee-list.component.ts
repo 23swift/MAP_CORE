@@ -37,7 +37,7 @@ pageEvent: PageEvent;
 this.paginator.pageIndex=0;
 this.paginator.pageSize=5;
 
-// this.sort.sortChange.subscribe(() => {this.paginator.pageIndex = 0; alert(this.sort.active);});
+this.sort.sortChange.subscribe(() => {this.paginator.pageIndex = 0;});
     this.result= merge(this.sort.sortChange, this.paginator.page)
     .pipe(startWith({}),
     switchMap(() => {
@@ -45,7 +45,7 @@ this.paginator.pageSize=5;
       // return this.getRepoIssues(
       //   this.sort.active, this.sort.direction, this.paginator.pageIndex);
 
-      // alert( JSON.stringify(this.sort.active) );
+      alert( JSON.stringify(this.sort.direction) );
       return this.getPagedData2(this.paginator.pageIndex,this.paginator.pageSize,this.sort.active,this.sort.direction);
     }),
       map(data=>{
@@ -59,16 +59,16 @@ this.paginator.pageSize=5;
       })
 
 
-    ).subscribe(data => this._employeesList = data);;
+    ).subscribe(data => this._employeesList = data);
 
 // alert( JSON.stringify(this.result) );
 
     // this.employeeService.getPagedEmployees(this.baseIndex.toString(),this.baseSize.toString()).subscribe(result => {
-
-    //   this._employeesList = result.employees;
-    //   this.resultsLength=result.totalCount;
+    //  this.result= this.getPagedData2(this.paginator.pageIndex,this.paginator.pageSize,this.sort.active,this.sort.direction);
+    //   this._employeesList = this.result.employees;
+    //   this.resultsLength=this.result.totalCount;
     //   this.pageSize=this.baseSize;
-    //   this.sortedData=result.employees;
+    //   this.sortedData=this.result.employees;
 
 
 
@@ -96,6 +96,7 @@ this.paginator.pageSize=5;
   }
   getPagedData2(_pageIndex:number , _pageSize:number,sortedBy:string,direction:string){
     // this.isLoadingResults=true;
+    // alert( "pageds" );
     return this.employeeService.getPagedEmployees(_pageIndex.valueOf().toString(),_pageSize.valueOf().toString(),sortedBy,direction);
 
   }

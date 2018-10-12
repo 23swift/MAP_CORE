@@ -52,7 +52,8 @@
 
 
   <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-  (page)="pageEvent = getPagedData($event)" [length]="resultsLength"></mat-paginator>
+   [length]="resultsLength"></mat-paginator>
+  <!-- (page)="pageEvent = getPagedData($event)" [length]="resultsLength"></mat-paginator> -->
   <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
   ></mat-paginator> -->
 </div>

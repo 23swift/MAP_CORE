@@ -27,7 +27,7 @@ url:string
     .set("sortedBy",sortedBy).set("direction",direction);
 
     var options = { params: _params };
-      // alert( JSON.stringify(options) );
+
         return this.http.get<EmployeePaged>(this.url + 'api/Employee/GetPaged',options);
   }
 

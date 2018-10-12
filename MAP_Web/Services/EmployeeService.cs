@@ -34,21 +34,44 @@ namespace MAP_Web.Services
         public Models.EmployeePaged GetPaged(int _pageIndex, int _pageSize,string sortedBy,string direction)
         {
             var employeeRepo= _unitOfWork.GetRepository<Models.Employee>();
-            var _pagedEmployeeList=employeeRepo.GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize);
-            var pagedEmployees=new Models.EmployeePaged{
-                TotalCount=_pagedEmployeeList.TotalCount
-                // Employees=_pagedEmployeeList.Items
-            };
+            IPagedList<Employee> _pagedEmployeeList;
+            // .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize,orderBy:x=>x.OrderBy(y=>y.Name));
+            // .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize); 
+            Models.EmployeePaged pagedEmployees=new Models.EmployeePaged();
 
             switch (sortedBy)
             { case "name":
-                pagedEmployees.Employees=_pagedEmployeeList.Items.OrderBy(x=>x.Name).ToList();
+           
+           
+                if(direction!="asc"){
+                     _pagedEmployeeList=employeeRepo
+            .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize,orderBy:x=>x.OrderByDescending(y=>y.Name));
+                }else{
+                     _pagedEmployeeList=employeeRepo
+            .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize,orderBy:x=>x.OrderBy(y=>y.Name));
+                }
+                
+                pagedEmployees.Employees=_pagedEmployeeList.Items.ToList();
+                pagedEmployees.TotalCount=_pagedEmployeeList.TotalCount;
                 break;
                 case "address":
-                pagedEmployees.Employees=_pagedEmployeeList.Items.OrderBy(x=>x.Address).ToList();
+                if(direction!="asc"){
+                     _pagedEmployeeList=employeeRepo
+            .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize,orderBy:x=>x.OrderByDescending(y=>y.Address));
+                }else{
+                     _pagedEmployeeList=employeeRepo
+            .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize,orderBy:x=>x.OrderBy(y=>y.Address));
+                }
+                
+                pagedEmployees.Employees=_pagedEmployeeList.Items.ToList();
+                
+                pagedEmployees.TotalCount=_pagedEmployeeList.TotalCount;
                 break;
                 default:
-                pagedEmployees.Employees=_pagedEmployeeList.Items.OrderBy(x=>x.Name).ToList();
+                 _pagedEmployeeList=employeeRepo
+            .GetPagedList(pageIndex: _pageIndex,pageSize:_pageSize,orderBy:x=>x.OrderBy(y=>y.Name));
+                pagedEmployees.Employees=_pagedEmployeeList.Items.ToList();
+                pagedEmployees.TotalCount=_pagedEmployeeList.TotalCount;
                 break;
             }
              return pagedEmployees;
